@@ -4,13 +4,15 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion project.ext.compileSdkVersion
     defaultConfig {
         applicationId "prx.test.kotlin.arkangel"
-        minSdkVersion 19
-        targetSdkVersion 26
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -22,7 +24,7 @@ android {
 }
 
 dependencies {
-    implementation "com.proxym_group:MVPArchitecture:1.1.1"
+//    implementation "com.proxym_group:MVPArchitecture:$project.ext.mvpArchitectureVersionName"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -30,7 +32,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    compile 'com.google.firebase:firebase-core:11.8.0'
+//    compile 'com.google.firebase:firebase-core:11.8.0'
 }
 repositories {
     mavenCentral()
