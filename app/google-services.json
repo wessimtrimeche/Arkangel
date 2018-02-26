@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "928019203746",
+    "firebase_url": "https://arkangel-36012.firebaseio.com",
+    "project_id": "arkangel-36012",
+    "storage_bucket": "arkangel-36012.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928019203746:android:ae6672f02e961896",
+        "android_client_info": {
+          "package_name": "prx.test.kotlin.arkangel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "928019203746-4ipvd70dl8n9nbqh9ogtm17so2r5n6kh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "prx.test.kotlin.arkangel",
+            "certificate_hash": "f54d70d2aa66bb947cbb19f274a43398e95325f6"
+          }
+        },
+        {
+          "client_id": "928019203746-375s9uvq70luflkm4cfghfen25kdou5k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAno5yUGC8xZ-t750xcvCoT-tdLE1r6r_Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "928019203746-375s9uvq70luflkm4cfghfen25kdou5k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
