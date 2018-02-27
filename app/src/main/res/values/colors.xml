@@ -3,4 +3,12 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- Screens background color-->
+    <color name="slide1">#f64c73</color>
+    <color name="slide2">#20d2bb</color>
+    <color name="slide3">#4fb65d</color>
+    <color name="slide4">#3395ff</color>
+    <color name="slide5">#a3a5a3</color>
+
 </resources>

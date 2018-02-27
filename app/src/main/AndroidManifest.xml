@@ -9,17 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="splash.views.SplashActivity">
+        <activity android:name=".splash.views.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".authentication.MainActivity">
-
-
-        </activity>
+        <activity android:name=".introSlider.IntroSliderActivity" />
+        <activity android:name=".authentication.AuthenticationActivity"></activity>
     </application>
 
 </manifest>

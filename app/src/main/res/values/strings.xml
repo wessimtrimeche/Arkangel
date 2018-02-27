@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Arkangel</string>
+
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Keep an eye on your loved ones!</string>
+    <string name="slide_1_desc">Arkangel allows you to monitor your childs positions in real time!</string>
+
+    <string name="slide_2_title">Safe &amp; Easy login</string>
+    <string name="slide_2_desc">Adding a child to your list haven\'t been easier, you\'ll just have to create a profile and then enter the generated code to your child's phone</string>
+
+    <string name="slide_3_title">Location alerts</string>
+    <string name="slide_3_desc">You can add a list of locations from which you\'ll receive notifications whenver your child enters or leaves them.</string>
+
+    <string name="slide_4_title">Habit tracking</string>
+    <string name="slide_4_desc">The locations history being stored will start reminding you whenever you forget doing a daily routine task</string>
+
+    <string name="slide_5_title">Way indication</string>
+    <string name="slide_5_desc">Whenever your child is lost he can ask you for direction and you can show him the way to his destination</string>
+
 </resources>
