@@ -30,98 +30,70 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#ffffff"
-        android:hint="E-mail"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
         android:padding="10sp"
         android:ems="10"
-        android:inputType="textEmailAddress"
+        android:hint="Parent code"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:hint="Password"
-        android:padding="10sp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
 
 
     <RadioGroup
-        android:id="@+id/group1"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginBottom="1dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="27dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2">
+        app:layout_constraintTop_toBottomOf="@+id/editText">
 
         <RadioButton
-            android:id="@+id/parents"
+            android:id="@+id/guardian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#ffffff"
-            android:layout_weight="1"
             android:onClick="onRadioButtonClicked"
-            android:text="Guardian" />
+
+            android:layout_weight="1"
+            android:text="Gardian" />
 
         <RadioButton
-            android:id="@+id/child"
+            android:id="@+id/angel"
             android:layout_width="81dp"
+            android:onClick="onRadioButtonClicked"
+
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Angel"
-            android:onClick="onRadioButtonClicked"
             android:textColor="#ffffff" />
     </RadioGroup>
 
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="75dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="#ffffff"
-        android:text="Register"
-
+        android:padding="10dp"
+        android:text="Link to guardian"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.85" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:textColor="#ffffff"
-        android:text="Already have an account ? Sign in"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintVertical_bias="0.8" />
 
 
 </android.support.constraint.ConstraintLayout>
