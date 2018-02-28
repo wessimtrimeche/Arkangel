@@ -5,10 +5,11 @@
     <color name="colorAccent">#FF4081</color>
 
     <!-- Screens background color-->
-    <color name="slide1">#f64c73</color>
-    <color name="slide2">#20d2bb</color>
-    <color name="slide3">#4fb65d</color>
-    <color name="slide4">#3395ff</color>
-    <color name="slide5">#a3a5a3</color>
+    <color name="red_f64c73">#f64c73</color>
+    <color name="turquoise_20d2bb">#20d2bb</color>
+    <color name="green_4fb65d">#4fb65d</color>
+    <color name="blue_3395ff">#3395ff</color>
+    <color name="grey_a3a5a3">#a3a5a3</color>
+    <color name="white">#ffffff</color>
 
 </resources>

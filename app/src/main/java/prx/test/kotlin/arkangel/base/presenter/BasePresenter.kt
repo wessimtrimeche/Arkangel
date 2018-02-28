@@ -1,6 +1,6 @@
 package prx.test.kotlin.arkangel.base.presenter
 
-import prx.test.kotlin.arkangel.base.views.BaseView
+import prx.test.kotlin.arkangel.base.view.BaseView
 
 /**
  * Created by wessim23 on 2/26/18.

@@ -1,6 +1,6 @@
 package prx.test.kotlin.arkangel.splash.presenter
 
-import prx.test.kotlin.arkangel.splash.views.SplashView
+import prx.test.kotlin.arkangel.splash.view.SplashView
 import prx.test.kotlin.arkangel.base.presenter.BasePresenter
 
 /**

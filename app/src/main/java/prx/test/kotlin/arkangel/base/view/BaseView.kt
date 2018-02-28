@@ -1,4 +1,4 @@
-package prx.test.kotlin.arkangel.base.views
+package prx.test.kotlin.arkangel.base.view
 
 /**
  * Created by wessim23 on 2/26/18.

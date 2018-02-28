@@ -1,4 +1,4 @@
-package prx.test.kotlin.arkangel.splash.views
+package prx.test.kotlin.arkangel.splash.view
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -9,7 +9,7 @@ import android.content.Intent
 import android.os.Handler
 import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.activity_splash.*
-import prx.test.kotlin.arkangel.introSlider.IntroSliderActivity
+import prx.test.kotlin.arkangel.introSlider.view.IntroSliderActivity
 
 
 class SplashActivity : AppCompatActivity(), SplashView {
@@ -33,7 +33,6 @@ class SplashActivity : AppCompatActivity(), SplashView {
 
 
         Handler().postDelayed(Runnable {
-            /* Create an Intent that will start the Menu-Activity. */
             val mainIntent = Intent(this@SplashActivity, IntroSliderActivity::class.java)
             this@SplashActivity.startActivity(mainIntent)
             this@SplashActivity.finish()
@@ -48,7 +47,4 @@ class SplashActivity : AppCompatActivity(), SplashView {
     override fun onDetach() {
 
     }
-    //    public SplashView getSplashView() {
-    //        return this;
-    //    }
 }

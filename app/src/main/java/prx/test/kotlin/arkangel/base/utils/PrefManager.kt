@@ -1,4 +1,4 @@
-package prx.test.kotlin.arkangel.introSlider
+package prx.test.kotlin.arkangel.base.utils
 
 /**
  * Created by wessim on 2/19/17.

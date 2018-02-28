@@ -20,4 +20,7 @@
     <string name="slide_5_title">Way indication</string>
     <string name="slide_5_desc">Whenever your child is lost he can ask you for direction and you can show him the way to his destination</string>
 
+
+    <string name="signUpTextView">Don\'t have an account ? Sign up</string>
+    <string name="signInTextView">Already have an account ? Sign in</string>
 </resources>
