@@ -8,7 +8,6 @@ import android.util.Patterns
 import android.view.View
 import android.view.ViewGroup.MarginLayoutParams
 import android.widget.Toast
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -21,8 +20,11 @@ import prx.test.kotlin.arkangel.profile.view.ProfileActivity
 class RegisterActivity : AppCompatActivity() {
 
 
+
+
     val mAuth = FirebaseAuth.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         getSupportActionBar()?.hide()
         setContentView(R.layout.activity_authentication)
@@ -94,8 +96,11 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
+        progressbar.visibility = View.VISIBLE
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task: Task<AuthResult> ->
+            progressbar.visibility = View.GONE
+
             if (task.isSuccessful) {
 
                 finish()
