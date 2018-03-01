@@ -109,6 +109,7 @@ class RegisterActivity : AppCompatActivity() , AuthenticationView {
 
         goToLogin.setOnClickListener({
             val intent = Intent(this, LoginActivity::class.java)
+
             startActivity(intent)
         })
 
