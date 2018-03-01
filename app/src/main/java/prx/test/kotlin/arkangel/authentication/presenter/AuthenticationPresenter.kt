@@ -8,16 +8,7 @@ import prx.test.kotlin.arkangel.authentication.view.AuthenticationView
  * Created by wessim23 on 2/28/18.
  */
 
-class AuthenticationPresenter {
-
-    val inter  : AuthenticationView
-
-    //constructeur pour que l'interface ne soit pas nulle
-    constructor(inter: AuthenticationView) {
-        this.inter = inter
-    }
-
-
+class AuthenticationPresenter(val inter :AuthenticationView) {
 
 
      fun validateInputs(email: String, password: String): Boolean {
