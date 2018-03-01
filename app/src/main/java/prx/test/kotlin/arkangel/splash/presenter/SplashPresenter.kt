@@ -17,6 +17,10 @@ class SplashPresenter(val splashView: SplashView) : BasePresenter<SplashView> {
 
     }
 
+    fun validate(){
+        splashView.onValidate()
+    }
+
 
 
 

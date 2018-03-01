@@ -12,7 +12,7 @@ import prx.test.kotlin.arkangel.base.utils.PrefManager
 
 
 
-class IntroSliderActivity : AppIntro() {
+class IntroSliderActivity : AppIntro(), IntroSliderView {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

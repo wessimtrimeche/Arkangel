@@ -8,6 +8,6 @@ import prx.test.kotlin.arkangel.base.view.BaseView;
 
 public interface SplashView extends BaseView {
 
-
+void onValidate();
 
 }

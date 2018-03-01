@@ -13,6 +13,9 @@ import prx.test.kotlin.arkangel.introSlider.view.IntroSliderActivity
 
 
 class SplashActivity : AppCompatActivity(), SplashView {
+    override fun onValidate() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private var presenter: SplashPresenter? = null
 
