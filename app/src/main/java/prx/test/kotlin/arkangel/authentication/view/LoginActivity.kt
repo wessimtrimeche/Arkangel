@@ -1,9 +1,11 @@
 package prx.test.kotlin.arkangel.authentication.view
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.widget.Toast
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
@@ -48,8 +50,18 @@ class LoginActivity : AppCompatActivity() , AuthenticationView {
 
 
             if(presenter?.validateInputs(email,password)){
-                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task: Task<AuthResult> ->
 
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+                val prog = ProgressDialog(this@LoginActivity)
+                prog.setMessage("loading")
+                prog.show()
+
+                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task: Task<AuthResult> ->
+                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+                    prog.hide()
                     if (task.isSuccessful) {
 
                         finish()
