@@ -37,10 +37,13 @@ dependencies {
     compile 'com.google.firebase:firebase-database:11.8.0'
     compile 'com.google.firebase:firebase-auth:11.8.0'
     compile 'com.google.firebase:firebase-storage:11.8.0'
-//    implementation 'com.proxym_group:MVPArchitecture:1.1.1'
+    compile 'com.github.bumptech.glide:glide:3.8.0'
+    compile 'com.android.support:support-v4:19.1.0'
+    //    implementation 'com.proxym_group:MVPArchitecture:1.1.1'
 }
 repositories {
     mavenCentral()
+    google()
 }
 
 

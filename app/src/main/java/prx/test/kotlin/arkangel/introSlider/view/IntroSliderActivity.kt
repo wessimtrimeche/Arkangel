@@ -18,7 +18,7 @@ class IntroSliderActivity : AppIntro(), IntroSliderView {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        getSupportActionBar()?.hide();
+//        getSupportActionBar()?.hide();
 
 //        var  prefManager = PrefManager(this)
 //

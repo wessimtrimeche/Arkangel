@@ -6,11 +6,11 @@
     android:background="@color/green_4fb65d"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="prx.test.kotlin.arkangel.profile.presenter.EditProfileActivity"
+    tools:context="prx.test.kotlin.arkangel.profile.view.EditProfileActivity"
     tools:showIn="@layout/app_bar_edit_profile">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/profilePic"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginBottom="8dp"
@@ -36,7 +36,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/profilePic"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText

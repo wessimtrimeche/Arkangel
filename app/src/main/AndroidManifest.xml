@@ -29,7 +29,7 @@
         </activity>
         <activity android:name=".profile.view.ProfileActivity" />
         <activity
-            android:name=".profile.presenter.EditProfileActivity"
+            android:name=".profile.view.EditProfileActivity"
             android:label="@string/title_activity_edit_profile"
             android:theme="@style/AppTheme1.NoActionBar"></activity>
     </application>

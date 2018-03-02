@@ -1,4 +1,4 @@
-package prx.test.kotlin.arkangel.profile.presenter
+package prx.test.kotlin.arkangel.profile.view
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -11,18 +11,30 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.app_bar_edit_profile.*
 import prx.test.kotlin.arkangel.R
+import android.widget.Toast
+import com.google.android.gms.tasks.Task
+import android.support.annotation.NonNull
+import android.view.View
+import com.bumptech.glide.Glide
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.FirebaseAuth
+import prx.test.kotlin.arkangel.R.id.textView
+import prx.test.kotlin.arkangel.R.id.imageView
+import com.google.firebase.auth.FirebaseUser
+import kotlinx.android.synthetic.main.content_edit_profile.*
+
 
 class EditProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    lateinit var mAuth:FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
+        mAuth = FirebaseAuth.getInstance();
+        loadUserInformation()
+
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -81,5 +93,22 @@ class EditProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItem
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun loadUserInformation() {
+        val user = mAuth.getCurrentUser()
+
+        if (user != null) {
+            if (user!!.getPhotoUrl() != null) {
+                Glide.with(this)
+                        .load(user!!.getPhotoUrl()!!.toString())
+                        .into(profilePic)
+            }
+
+            if (user!!.getDisplayName() != null) {
+                last_name.setText(user!!.getDisplayName())
+            }
+
+        }
     }
 }

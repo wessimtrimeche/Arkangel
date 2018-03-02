@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import prx.test.kotlin.arkangel.R
 import prx.test.kotlin.arkangel.authentication.presenter.AuthenticationPresenter
-import prx.test.kotlin.arkangel.profile.presenter.EditProfileActivity
+import prx.test.kotlin.arkangel.profile.view.EditProfileActivity
 
 
 class LoginActivity : AppCompatActivity() , AuthenticationView {
