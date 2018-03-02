@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@color/green_4fb65d"
-    tools:context="prx.test.kotlin.arkangel.profile.view.ProfileActivity">
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="prx.test.kotlin.arkangel.profile.presenter.EditProfileActivity"
+    tools:showIn="@layout/app_bar_edit_profile">
 
     <ImageView
         android:id="@+id/imageView"
@@ -19,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.100000024" />
+        app:layout_constraintVertical_bias="0.04000002" />
 
     <Button
         android:id="@+id/file_upload"

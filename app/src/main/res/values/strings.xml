@@ -23,4 +23,10 @@
 
     <string name="signUpTextView">Don\'t have an account ? Sign up</string>
     <string name="signInTextView">Already have an account ? Sign in</string>
+    <string name="title_activity_edit_profile">EditProfileActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
