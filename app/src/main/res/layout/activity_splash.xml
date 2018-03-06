@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/layout1"
-    tools:context=".splash.view.SplashActivity">
+    tools:context=".module.splash.view.SplashActivity">
 
     <ImageView
         android:id="@+id/img"

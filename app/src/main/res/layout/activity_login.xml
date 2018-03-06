@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/green_4fb65d"
     android:layout_height="match_parent"
-    tools:context="prx.test.kotlin.arkangel.authentication.view.LoginActivity">
+    tools:context="prx.test.kotlin.arkangel.module.authentication.view.LoginActivity">
 
     <ImageView
         android:id="@+id/imageView"

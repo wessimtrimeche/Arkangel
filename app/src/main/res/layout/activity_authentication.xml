@@ -6,24 +6,48 @@
     android:layout_width="match_parent"
     android:background="@color/green_4fb65d"
     android:layout_height="match_parent"
-    tools:context="prx.test.kotlin.arkangel.authentication.view.RegisterActivity">
+    tools:context="prx.test.kotlin.arkangel.module.authentication.view.RegisterActivity">
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="0dp"
         android:contentDescription="logo"
-        app:layout_constraintBottom_toTopOf="@+id/emailEditText"
+        app:layout_constraintBottom_toTopOf="@+id/firstnameEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45999998"
         app:srcCompat="@drawable/register" />
+
+    <EditText
+        android:id="@+id/firstnameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:ems="10"
+
+        android:hint="First name"
+        android:padding="10sp"
+        app:layout_constraintBottom_toTopOf="@id/lastnameEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintVertical_bias="0.14999998" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:ems="10"
+
+        android:hint="Last name"
+        android:padding="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstnameEditText"
+        app:layout_constraintBottom_toTopOf="@id/emailEditText"
+        android:id="@+id/lastnameEditText"/>
 
 
     <EditText
@@ -31,28 +55,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#ffffff"
-        android:hint="E-mail"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:padding="10sp"
         android:ems="10"
+        android:hint="E-mail"
         android:inputType="textEmailAddress"
+        android:padding="10sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
+        app:layout_constraintTop_toBottomOf="@+id/lastnameEditText"
+        app:layout_constraintBottom_toTopOf="@id/passwordEditText"
+
+        tools:layout_editor_absoluteY="363dp" />
 
     <EditText
         android:id="@+id/passwordEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
         android:background="#ffffff"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+
         android:padding="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -64,11 +87,10 @@
         android:id="@+id/parentCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_margin="20dp"
         android:background="#ffffff"
         android:ems="10"
+        android:visibility="gone"
         android:hint="Parent code"
         android:inputType="textPassword"
         android:padding="10sp"
@@ -76,25 +98,20 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintBottom_toTopOf="@+id/userTypeRadioGroup"
         app:layout_constraintStart_toStartOf="parent"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
     <RadioGroup
         android:id="@+id/userTypeRadioGroup"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="1dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/registerBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/parentCode"
-
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditText"
         >
 
         <RadioButton
@@ -132,7 +149,7 @@
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.85" />
+        app:layout_constraintVertical_bias="0.9" />
 
     <TextView
         android:id="@+id/goToLogin"

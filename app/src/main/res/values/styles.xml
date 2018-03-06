@@ -11,16 +11,16 @@
 
     <style name="IntroTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/green_4fb65d</item>
-        <item name="colorPrimaryDark">@color/green_4fb65d</item>
+        <item name="colorPrimary">@color/grey_a3a5a3</item>
+        <item name="colorPrimaryDark">@color/grey_a3a5a3</item>
         <item name="colorAccent">@color/black</item>
 
     </style>
 
     <style name="AppTheme1" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/green_4fb65d</item>
-        <item name="colorPrimaryDark">@color/green_4fb65d</item>
+        <item name="colorPrimary">@color/grey_a3a5a3</item>
+        <item name="colorPrimaryDark">@color/grey_a3a5a3</item>
         <item name="colorAccent">@color/black</item>
 
     </style>
