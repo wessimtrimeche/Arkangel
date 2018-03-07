@@ -9,4 +9,8 @@ package prx.test.kotlin.arkangel.module.authentication.presenter
 
     fun OnErrorMessageEmail (errorMessage:String)
     fun OnErrorMessagePassword (errorMessage:String)
+    fun OnShowLoader()
+    fun OnHideLoader()
+    fun OnComplete()
+    fun onAuthenticationError(errorMessage: String?)
 }

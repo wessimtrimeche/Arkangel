@@ -5,4 +5,7 @@ package prx.test.kotlin.arkangel.data;
  */
 
 public class NetworkProvider {
+    //fun login(string emai, string pwd){
+    //apiservice.login(email, pwd)
+    //}
 }

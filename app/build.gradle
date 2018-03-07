@@ -40,6 +40,9 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.8.0'
     compile 'com.android.support:support-v4:19.1.0'
     //    implementation 'com.proxym_group:MVPArchitecture:1.1.1'
+
+    //rxjava
+    compile 'com.kelvinapps:rxfirebase:0.0.15'
 }
 repositories {
     mavenCentral()
