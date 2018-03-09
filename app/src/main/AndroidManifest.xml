@@ -15,7 +15,9 @@
             android:name=".module.splash.view.SplashActivity"
             android:theme="@style/AppTheme1">
         </activity>
-        <activity android:name=".module.introSlider.view.IntroSliderActivity" />
+        <activity android:name=".module.introSlider.view.IntroSliderActivity" >
+
+        </activity>
         <activity
             android:name=".module.authentication.view.RegisterActivity"
             android:theme="@style/IntroTheme" />

@@ -64,7 +64,7 @@
 
 
     <TextView
-        android:id="@+id/emailUpdate"
+        android:id="@+id/emailVerif"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -82,7 +82,7 @@
         android:layout_marginBottom="7dp"
         android:text="Reset password"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@+id/emailUpdate"
+        app:layout_constraintBottom_toTopOf="@+id/emailVerif"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/last_name1" />
@@ -97,6 +97,6 @@
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/resetPassword"
-        app:layout_constraintTop_toBottomOf="@+id/emailUpdate" />
+        app:layout_constraintTop_toBottomOf="@+id/emailVerif" />
 
 </android.support.constraint.ConstraintLayout>

@@ -2,21 +2,19 @@ package prx.test.kotlin.arkangel.module.authentication.view
 
 import android.app.ProgressDialog
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
-import android.view.WindowManager
 import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import prx.test.kotlin.arkangel.R
+import prx.test.kotlin.arkangel.common.utils.PrefManager
 import prx.test.kotlin.arkangel.module.authentication.presenter.AuthenticationView
 import prx.test.kotlin.arkangel.module.authentication.presenter.LoginPresenter
 import prx.test.kotlin.arkangel.module.profile.view.EditProfileActivity
@@ -29,12 +27,29 @@ class LoginActivity : AppCompatActivity(), AuthenticationView, View.OnClickListe
     private val RC_SIGN_IN = 9001
     private var mGoogleSignInClient: GoogleSignInClient? = null
 
+    var prog: ProgressDialog? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getSupportActionBar()?.hide()
         setContentView(R.layout.activity_login)
 
+        prog = ProgressDialog(this@LoginActivity)
+
+        var prefManager = PrefManager(this)
+
+        prefManager.checkLogin(mAuth)
+
+//
+//        val firebaseAuthStateListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
+//            if (firebaseAuth.currentUser!=null){
+//                startActivity(Intent(this,EditProfileActivity::class.java))
+//            }
+//        }
+//
+//
+//        firebaseAuthStateListener.onAuthStateChanged(mAuth)
 
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -57,34 +72,29 @@ class LoginActivity : AppCompatActivity(), AuthenticationView, View.OnClickListe
 
         val account = GoogleSignIn.getLastSignedInAccount(this)
 //        updateUI(account)
-        if(account!=null){
-            Log.d("account","not null")
+        if (account != null) {
+            Log.d("account", "not null")
         }
     }
 
 
-
     override fun onClick(p0: View?) {
 
-        if(p0?.id==R.id.login){
+        if (p0?.id == R.id.login) {
             val email = emailEdit.text.toString().trim { it <= ' ' }
             val password = passwordEdit.text.toString().trim { it <= ' ' }
 
 
-            if (presenter?.validateInputs(email,password)) {
+            if (presenter?.validateInputs(email, password)) {
 
                 presenter.loginWithEmailPassword(mAuth, email, password)
             }
 
-        }
-
-        else if (p0?.id==R.id.goToSignUp){
+        } else if (p0?.id == R.id.goToSignUp) {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
 
-        }
-
-        else if (p0?.id == R.id.googleSignin){
+        } else if (p0?.id == R.id.googleSignin) {
 
             val signInIntent: Intent = mGoogleSignInClient!!.getSignInIntent();
             startActivityForResult(signInIntent, RC_SIGN_IN);
@@ -102,14 +112,13 @@ class LoginActivity : AppCompatActivity(), AuthenticationView, View.OnClickListe
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 val account = task.getResult(ApiException::class.java)
-                presenter.firebaseAuthWithGoogle(mAuth,account)
+                presenter.firebaseAuthWithGoogle(mAuth, account)
             } catch (e: ApiException) {
                 Log.w("Sign In failure", "Google sign in failed", e)
             }
 
         }
     }
-
 
 
     override fun OnComplete() {
@@ -126,16 +135,14 @@ class LoginActivity : AppCompatActivity(), AuthenticationView, View.OnClickListe
     }
 
     override fun OnShowLoader() {
-        val prog = ProgressDialog(this@LoginActivity)
 
-        prog.setMessage("loading")
-        prog.show()
+        prog?.setMessage("loading")
+        prog?.show()
     }
 
     override fun OnHideLoader() {
-        val prog = ProgressDialog(this@LoginActivity)
 
-        prog.hide()
+        prog?.hide()
     }
 
     override fun OnErrorMessageEmail(errorMessage: String) {
@@ -148,8 +155,6 @@ class LoginActivity : AppCompatActivity(), AuthenticationView, View.OnClickListe
         passwordEdit.error = errorMessage
         passwordEdit.requestFocus()
     }
-
-
 
 
 }

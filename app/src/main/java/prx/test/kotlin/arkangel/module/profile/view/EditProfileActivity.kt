@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.OnCompleteListener
@@ -30,31 +31,43 @@ import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.app_bar_edit_profile.*
 import kotlinx.android.synthetic.main.content_edit_profile.*
 import prx.test.kotlin.arkangel.R
+import prx.test.kotlin.arkangel.module.authentication.view.LoginActivity
 import prx.test.kotlin.arkangel.module.profile.model.User
 
 
-class EditProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class EditProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+    override fun onClick(p0: View?) {
+
+        if (p0?.id == R.id.emailVerif)
+            firebaseUser.sendEmailVerification().addOnCompleteListener({
+                Toast.makeText(this, "Email Verification Sent!", Toast.LENGTH_LONG).show()
+            })
+    }
 
 
     lateinit var profileImageUrl: String
     var uriProfileImage: Uri? = null
     private var mStorageRef: StorageReference? = null
     private val RESULT_LOAD_IMAGE = 101
-
     lateinit var mAuth: FirebaseAuth
+    lateinit var firebaseUser: FirebaseUser
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
         setSupportActionBar(toolbar)
 
 
-        mAuth = FirebaseAuth.getInstance()
-        val user = mAuth.getCurrentUser()
 
-        if (user != null) {
-            if (user.getPhotoUrl() != null)
-                profileImageUrl = user!!.getPhotoUrl()!!.toString()
-            loadUserInformation(user)
+        mAuth = FirebaseAuth.getInstance()
+
+        firebaseUser = mAuth.getCurrentUser()!!
+
+        if (firebaseUser != null) {
+            if (firebaseUser.getPhotoUrl() != null)
+                profileImageUrl = firebaseUser!!.getPhotoUrl()!!.toString()
+            loadUserInformation(firebaseUser)
         }
         file_upload1.setOnClickListener {
             showImageChooser()
@@ -62,6 +75,15 @@ class EditProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItem
 
         saveBtn1.setOnClickListener {
             save()
+        }
+
+
+        if (firebaseUser!!.isEmailVerified)
+            emailVerif.setText("Email verified")
+        else {
+            emailVerif.setText("Email not verified")
+            emailVerif.setOnClickListener(this)
+
         }
 
 
@@ -93,6 +115,14 @@ class EditProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
             R.id.action_settings -> return true
+            R.id.logout -> {
+                FirebaseAuth.getInstance().signOut()
+                finish()
+                startActivity(Intent(this, LoginActivity::class.java))
+
+                return true
+            }
+
             else -> return super.onOptionsItemSelected(item)
         }
     }
@@ -127,7 +157,6 @@ class EditProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItem
     private fun loadUserInformation(user: FirebaseUser) {
 
         val userId = mAuth.currentUser?.uid
-        val firebaseUser: FirebaseUser? = mAuth.currentUser
         val ref = FirebaseDatabase.getInstance().getReference()
         val displayName = mAuth.currentUser?.displayName
 
@@ -135,8 +164,6 @@ class EditProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItem
                 .subscribe({ user ->
                     first_name1.setText(user?.firstName)
                     last_name1.setText(user?.lastName)
-                    if (!firebaseUser!!.isEmailVerified)
-                        emailUpdate.setText("Email Not verified")
 
                 })
 

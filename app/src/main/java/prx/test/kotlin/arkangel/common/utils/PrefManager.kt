@@ -5,7 +5,15 @@ package prx.test.kotlin.arkangel.common.utils
  */
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import android.support.v4.content.ContextCompat.startActivity
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import prx.test.kotlin.arkangel.module.authentication.view.LoginActivity
+import prx.test.kotlin.arkangel.module.home.view.HomeActivity
+import prx.test.kotlin.arkangel.module.profile.view.EditProfileActivity
+
 
 class PrefManager(internal var _context: Context) {
     internal var pref: SharedPreferences
@@ -32,6 +40,27 @@ class PrefManager(internal var _context: Context) {
         private val PREF_NAME = "Arkangel"
 
         private val IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch"
+        private val IS_USER_LOGIN = "IsUserLoggedIn"
     }
 
+//
+    var isLoggedIn: Boolean
+        get() = pref.getBoolean(IS_USER_LOGIN, true)
+        set(isLoggedIn) {
+            editor.putBoolean(IS_USER_LOGIN, isLoggedIn)
+            editor.commit()
+        }
+
+    fun checkLogin(mAuth: FirebaseAuth){
+
+        val firebaseAuthStateListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
+            if (firebaseAuth.currentUser!=null){
+                val intent = Intent(_context,EditProfileActivity::class.java)
+                _context.startActivity(intent)
+            }
+        }
+        firebaseAuthStateListener.onAuthStateChanged(mAuth)
+
+
+    }
 }
