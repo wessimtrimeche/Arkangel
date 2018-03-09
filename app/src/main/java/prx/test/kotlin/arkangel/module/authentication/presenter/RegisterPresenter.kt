@@ -1,7 +1,10 @@
 package prx.test.kotlin.arkangel.module.authentication.presenter
 
+import android.util.Log
 import android.util.Patterns
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.kelvinapps.rxfirebase.RxFirebaseAuth
 import prx.test.kotlin.arkangel.data.DataManager
 import rx.functions.Action0
@@ -70,6 +73,10 @@ class RegisterPresenter(val inter: AuthenticationView) {
                 }
         )
     }
+
+
+
+
 
 
 }

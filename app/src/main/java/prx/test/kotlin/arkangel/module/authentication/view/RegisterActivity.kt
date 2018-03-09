@@ -11,10 +11,31 @@ import prx.test.kotlin.arkangel.R
 import prx.test.kotlin.arkangel.module.authentication.presenter.RegisterPresenter
 import android.app.ProgressDialog
 import android.widget.RadioGroup
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.*
 import prx.test.kotlin.arkangel.module.authentication.presenter.AuthenticationView
 import prx.test.kotlin.arkangel.module.home.view.HomeActivity
 import prx.test.kotlin.arkangel.module.profile.model.User
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import android.R.attr.data
+import android.util.Log
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.gms.tasks.Task
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.common.api.ApiException
+import android.R.attr.data
+import android.support.v4.app.FragmentActivity
+import android.support.design.widget.Snackbar
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.AuthResult
+import android.support.annotation.NonNull
+import com.google.android.gms.tasks.OnCompleteListener
+import com.kelvinapps.rxfirebase.RxFirebaseAuth.signInWithCredential
+import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.AuthCredential
+
+
 
 
 class RegisterActivity : AppCompatActivity(), AuthenticationView, RadioGroup.OnCheckedChangeListener, View.OnClickListener {
@@ -23,7 +44,6 @@ class RegisterActivity : AppCompatActivity(), AuthenticationView, RadioGroup.OnC
     val user = User()
     lateinit var mAuth: FirebaseAuth
     val presenter = RegisterPresenter(this)
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         mAuth = FirebaseAuth.getInstance()
@@ -36,6 +56,7 @@ class RegisterActivity : AppCompatActivity(), AuthenticationView, RadioGroup.OnC
         registerBtn.setOnClickListener(this)
         goToLogin.setOnClickListener(this)
     }
+
 
     override fun onCheckedChanged(p0: RadioGroup?, p1: Int) {
 
@@ -124,6 +145,26 @@ class RegisterActivity : AppCompatActivity(), AuthenticationView, RadioGroup.OnC
         passwordEditText.requestFocus()
     }
 
+
+
+//    private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
+//        Log.d("Firebase Auth Google", "firebaseAuthWithGoogle:" + acct.id!!)
+//
+//        val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
+//        mAuth.signInWithCredential(credential)
+//                .addOnCompleteListener(this) { task ->
+//                    if (task.isSuccessful) {
+//                        // Sign in success, update UI with the signed-in user's information
+//                        Log.d("Success", "signInWithCredential:success")
+//                        val user = mAuth.currentUser
+//                    } else {
+//                        // If sign in fails, display a message to the user.
+////                        Log.w(FragmentActivity.TAG, "signInWithCredential:failure", task.exception)
+////                        Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show()
+////                        updateUI(null)
+//                    }
+//                }
+//    }
 }
 
 

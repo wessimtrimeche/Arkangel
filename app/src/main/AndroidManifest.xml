@@ -14,11 +14,6 @@
         <activity
             android:name=".module.splash.view.SplashActivity"
             android:theme="@style/AppTheme1">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".module.introSlider.view.IntroSliderActivity" />
         <activity
@@ -27,6 +22,12 @@
         <activity
             android:name=".module.authentication.view.LoginActivity"
             android:theme="@style/IntroTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
 
         </activity>
 

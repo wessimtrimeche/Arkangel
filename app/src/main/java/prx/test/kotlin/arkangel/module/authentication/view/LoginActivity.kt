@@ -4,9 +4,14 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -21,6 +26,8 @@ class LoginActivity : AppCompatActivity(), AuthenticationView, View.OnClickListe
 
     val presenter = LoginPresenter(this)
     val mAuth = FirebaseAuth.getInstance()
+    private val RC_SIGN_IN = 9001
+    private var mGoogleSignInClient: GoogleSignInClient? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,10 +35,33 @@ class LoginActivity : AppCompatActivity(), AuthenticationView, View.OnClickListe
         getSupportActionBar()?.hide()
         setContentView(R.layout.activity_login)
 
+
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+
         login.setOnClickListener(this)
         goToSignUp.setOnClickListener(this)
+        googleSignin.setOnClickListener(this)
 
     }
+
+    override fun onStart() {
+        super.onStart()
+
+        val account = GoogleSignIn.getLastSignedInAccount(this)
+//        updateUI(account)
+        if(account!=null){
+            Log.d("account","not null")
+        }
+    }
+
 
 
     override fun onClick(p0: View?) {
@@ -47,12 +77,39 @@ class LoginActivity : AppCompatActivity(), AuthenticationView, View.OnClickListe
             }
 
         }
+
         else if (p0?.id==R.id.goToSignUp){
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
 
         }
+
+        else if (p0?.id == R.id.googleSignin){
+
+            val signInIntent: Intent = mGoogleSignInClient!!.getSignInIntent();
+            startActivityForResult(signInIntent, RC_SIGN_IN);
+
+
+        }
     }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode === RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                presenter.firebaseAuthWithGoogle(mAuth,account)
+            } catch (e: ApiException) {
+                Log.w("Sign In failure", "Google sign in failed", e)
+            }
+
+        }
+    }
+
 
 
     override fun OnComplete() {

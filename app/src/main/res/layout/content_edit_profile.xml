@@ -3,102 +3,87 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/green_4fb65d"
     android:layout_height="match_parent"
+    android:background="@color/green_4fb65d"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="prx.test.kotlin.arkangel.module.profile.view.EditProfileActivity"
+    tools:layout_editor_absoluteY="81dp"
     tools:showIn="@layout/app_bar_edit_profile">
 
     <ImageView
         android:id="@+id/picture"
         android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="6dp"
         android:src="@drawable/profile"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/file_upload1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.04000002" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/file_upload1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="18dp"
+        android:layout_marginStart="19dp"
         android:text="Choose photo"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/picture"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintBottom_toTopOf="@+id/first_name1"
+        app:layout_constraintStart_toStartOf="@+id/picture"
+        app:layout_constraintTop_toBottomOf="@+id/picture" />
 
     <EditText
         android:id="@+id/first_name1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10sp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="44dp"
+
+        android:layout_marginBottom="16dp"
         android:background="@color/white"
         android:ems="10"
         android:hint="First Name"
+        android:padding="10sp"
         app:layout_constraintBottom_toTopOf="@+id/last_name1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/file_upload1"
-        app:layout_constraintVertical_bias="0.36" />
-
+        app:layout_constraintTop_toBottomOf="@+id/file_upload1" />
 
 
     <EditText
         android:id="@+id/last_name1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:padding="10sp"
-        android:layout_marginBottom="160dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="52dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="9dp"
         android:background="@color/white"
+        android:ems="10"
         android:hint="Last name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
+        android:padding="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/resetPassword"
+        app:layout_constraintStart_toStartOf="@+id/first_name1"
         app:layout_constraintTop_toBottomOf="@+id/first_name1" />
 
 
-    <Button
+    <TextView
         android:id="@+id/emailUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="1dp"
         android:text="Change email"
         android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/resetPassword"
-        app:layout_constraintTop_toBottomOf="@+id/last_name1" />
+        app:layout_constraintBottom_toTopOf="@+id/saveBtn1"
+        app:layout_constraintStart_toStartOf="@+id/saveBtn1"
+        app:layout_constraintTop_toBottomOf="@+id/resetPassword" />
 
     <Button
         android:id="@+id/resetPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="48dp"
+        android:layout_marginBottom="7dp"
         android:text="Reset password"
         android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/emailUpdate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/last_name1" />
 
@@ -106,15 +91,12 @@
         android:id="@+id/saveBtn1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="17dp"
         android:text="Save"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/genderRg" />
+        app:layout_constraintEnd_toEndOf="@+id/resetPassword"
+        app:layout_constraintTop_toBottomOf="@+id/emailUpdate" />
 
 </android.support.constraint.ConstraintLayout>

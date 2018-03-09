@@ -1,5 +1,6 @@
 package prx.test.kotlin.arkangel.data
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -23,21 +24,44 @@ open  class DataManager
 
     fun createUser(mAuth: FirebaseAuth, firstName: String, lastName: String) {
 
-
         val user = User()
 
         var database = FirebaseDatabase.getInstance()
         val userId = mAuth.currentUser?.uid;
 //        val firstName1 = firstnameEditText.text.toString()
 //        val lastName1 = lastnameEditText.text.toString()
+        var displayName = mAuth.currentUser?.displayName
 
         user.firstName = firstName
         user.lastName = lastName
+        displayName= user.firstName+" "+user.lastName
 
         val userEmail = mAuth.currentUser?.email
         user.email = userEmail
 
-        val ref: DatabaseReference = database.getReference("users/" + userId)
+        val ref: DatabaseReference = database.getReference("users/" + displayName)
+        ref.setValue(user)
+    }
+
+
+    fun createUserGoogle(mAuth: FirebaseAuth,account: GoogleSignInAccount) {
+
+        val user = User()
+
+        var database = FirebaseDatabase.getInstance()
+        val userId = mAuth.currentUser?.uid;
+        var displayName = mAuth.currentUser?.displayName
+//        val firstName1 = firstnameEditText.text.toString()
+//        val lastName1 = lastnameEditText.text.toString()
+
+        user.firstName = account.givenName
+        user.lastName = account.familyName
+
+        displayName= user.firstName+" "+user.lastName
+        val userEmail = mAuth.currentUser?.email
+        user.email = userEmail
+
+        val ref: DatabaseReference = database.getReference("users/" + displayName)
         ref.setValue(user)
     }
 
