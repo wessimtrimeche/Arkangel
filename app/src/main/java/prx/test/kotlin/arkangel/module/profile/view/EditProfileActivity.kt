@@ -11,11 +11,13 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -38,10 +40,14 @@ import prx.test.kotlin.arkangel.module.profile.model.User
 class EditProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     override fun onClick(p0: View?) {
 
-        if (p0?.id == R.id.emailVerif)
-            firebaseUser.sendEmailVerification().addOnCompleteListener({
-                Toast.makeText(this, "Email Verification Sent!", Toast.LENGTH_LONG).show()
-            })
+        if (p0?.id == R.id.emailVerif){
+
+                firebaseUser.sendEmailVerification().addOnCompleteListener({
+                    Toast.makeText(this, "Email Verification Sent!", Toast.LENGTH_LONG).show()
+                })
+
+        }
+
     }
 
 
@@ -78,8 +84,10 @@ class EditProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         }
 
 
-        if (firebaseUser!!.isEmailVerified)
+        if (firebaseUser!!.isEmailVerified){
             emailVerif.setText("Email verified")
+
+        }
         else {
             emailVerif.setText("Email not verified")
             emailVerif.setOnClickListener(this)

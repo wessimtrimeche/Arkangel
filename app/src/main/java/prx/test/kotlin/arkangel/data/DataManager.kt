@@ -1,7 +1,10 @@
 package prx.test.kotlin.arkangel.data
 
+import android.util.Log
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import prx.test.kotlin.arkangel.module.profile.model.User
@@ -23,7 +26,7 @@ open class DataManager
         val user = User()
 
         var database = FirebaseDatabase.getInstance()
-        val userId = mAuth.currentUser?.uid;
+        val firebaseUser = mAuth.currentUser
 //        val firstName1 = firstnameEditText.text.toString()
 //        val lastName1 = lastnameEditText.text.toString()
         var displayName = mAuth.currentUser?.displayName
@@ -31,6 +34,13 @@ open class DataManager
         user.firstName = firstName
         user.lastName = lastName
         displayName = user.firstName + " " + user.lastName
+
+
+
+        val profileUpdates = UserProfileChangeRequest.Builder()
+                .setDisplayName(displayName).build()
+        firebaseUser?.updateProfile(profileUpdates)
+//        Log.d("testtest",firebaseUser?.displayName)
 
         val userEmail = mAuth.currentUser?.email
         user.email = userEmail
