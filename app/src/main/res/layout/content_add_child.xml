@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_4fb65d"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="prx.test.kotlin.arkangel.module.childProfile.view.AddChildActivity"
+    tools:layout_editor_absoluteY="81dp"
+    tools:showIn="@layout/app_bar_add_child">
+
+
+    <ImageView
+        android:id="@+id/picture"
+        android:layout_width="150dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/profile"
+        app:layout_constraintBottom_toTopOf="@+id/childPhotoUpload"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/childPhotoUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="19dp"
+        android:text="Choose photo"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/childName"
+        app:layout_constraintEnd_toEndOf="@+id/picture"
+        app:layout_constraintTop_toBottomOf="@+id/picture" />
+
+    <EditText
+        android:id="@+id/childName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="37dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="Name"
+        android:padding="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/birthDate"
+        app:layout_constraintStart_toStartOf="@+id/birthDate"
+        app:layout_constraintTop_toBottomOf="@+id/childPhotoUpload" />
+
+    <TextView
+        android:id="@+id/birthDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="41dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginStart="73dp"
+        android:background="@color/white"
+        android:text="Pick a date"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/parentCode"
+        app:layout_constraintEnd_toStartOf="@+id/calendar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/childName" />
+
+    <ImageView
+        android:id="@+id/calendar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/date"
+        app:layout_constraintBottom_toBottomOf="@+id/birthDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/birthDate"
+        app:layout_constraintTop_toTopOf="@+id/birthDate" />
+
+    <TextView
+        android:id="@+id/parentCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="26dp"
+        android:text="XVF-DP4-52W"
+        app:layout_constraintBottom_toTopOf="@+id/saveBtn"
+        app:layout_constraintStart_toStartOf="@+id/saveBtn"
+        app:layout_constraintTop_toBottomOf="@+id/birthDate" />
+
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:text="Save"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/parentCode" />
+
+</android.support.constraint.ConstraintLayout>

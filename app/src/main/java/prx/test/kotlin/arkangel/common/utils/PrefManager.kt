@@ -7,11 +7,8 @@ package prx.test.kotlin.arkangel.common.utils
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.support.v4.content.ContextCompat.startActivity
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import prx.test.kotlin.arkangel.module.authentication.view.LoginActivity
-import prx.test.kotlin.arkangel.module.home.view.HomeActivity
+import prx.test.kotlin.arkangel.module.home.view.MainActivity
 import prx.test.kotlin.arkangel.module.profile.view.EditProfileActivity
 
 
@@ -55,7 +52,7 @@ class PrefManager(internal var _context: Context) {
 
         val firebaseAuthStateListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
             if (firebaseAuth.currentUser!=null){
-                val intent = Intent(_context,EditProfileActivity::class.java)
+                val intent = Intent(_context, MainActivity::class.java)
                 _context.startActivity(intent)
             }
         }

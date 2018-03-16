@@ -9,12 +9,14 @@ import android.view.ViewGroup.MarginLayoutParams
 import android.widget.RadioGroup
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.hypertrack.lib.HyperTrack
 import kotlinx.android.synthetic.main.activity_authentication.*
 import prx.test.kotlin.arkangel.R
 import prx.test.kotlin.arkangel.common.utils.PrefManager
 import prx.test.kotlin.arkangel.module.authentication.presenter.AuthenticationView
 import prx.test.kotlin.arkangel.module.authentication.presenter.RegisterPresenter
 import prx.test.kotlin.arkangel.module.home.view.HomeActivity
+import prx.test.kotlin.arkangel.module.home.view.MainActivity
 import prx.test.kotlin.arkangel.module.profile.model.User
 import prx.test.kotlin.arkangel.module.profile.view.EditProfileActivity
 
@@ -90,6 +92,8 @@ class RegisterActivity : AppCompatActivity(), AuthenticationView, RadioGroup.OnC
             val lastName = lastnameEditText.text.toString().trim { it <= ' ' }
 
             if (presenter?.validateInputs(email, password)) {
+                HyperTrack.requestPermissions(this);
+                HyperTrack.requestLocationServices(this);
 
                 presenter.createUserWithEmailAndPassword(mAuth, email, password, firstName, lastName);
 
@@ -108,7 +112,7 @@ class RegisterActivity : AppCompatActivity(), AuthenticationView, RadioGroup.OnC
 
     override fun OnComplete() {
         finish()
-        startActivity(Intent(this@RegisterActivity, HomeActivity::class.java))
+        startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
 
     }
 

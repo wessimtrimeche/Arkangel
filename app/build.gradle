@@ -28,6 +28,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.android.support:design:26.1.0'
+    implementation 'com.google.android.gms:play-services-maps:11.8.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
@@ -40,14 +41,24 @@ dependencies {
     compile "com.google.android.gms:play-services-auth:11.8.0"
     compile 'com.github.bumptech.glide:glide:3.8.0'
     compile 'com.android.support:support-v4:19.1.0'
+    compile 'com.google.android.gms:play-services-location:11.8.0'
+    compile 'com.google.android.gms:play-services-maps:11.8.0'
     //    implementation 'com.proxym_group:MVPArchitecture:1.1.1'
 
     //rxjava
     compile 'com.kelvinapps:rxfirebase:0.0.15'
+    //hypertrack
+    compile('com.hypertrack:android:0.6.20@aar') {
+        transitive = true;
+    }
+
+    //circle Image view
+    compile 'de.hdodenhof:circleimageview:2.2.0'
 }
 repositories {
     mavenCentral()
     google()
+    maven { url 'http://hypertrack-android-sdk.s3-website-us-west-2.amazonaws.com/' }
 }
 
 

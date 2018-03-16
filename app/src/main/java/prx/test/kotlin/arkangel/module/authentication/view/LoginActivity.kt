@@ -3,6 +3,8 @@ package prx.test.kotlin.arkangel.module.authentication.view
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.support.annotation.NonNull
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
@@ -12,11 +14,19 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.hypertrack.lib.HyperTrack
+import com.hypertrack.lib.callbacks.HyperTrackCallback
+import com.hypertrack.lib.models.SuccessResponse
+import com.hypertrack.lib.models.UserParams
 import kotlinx.android.synthetic.main.activity_login.*
 import prx.test.kotlin.arkangel.R
+import prx.test.kotlin.arkangel.R.id.emailEdit
+import prx.test.kotlin.arkangel.R.id.passwordEdit
 import prx.test.kotlin.arkangel.common.utils.PrefManager
 import prx.test.kotlin.arkangel.module.authentication.presenter.AuthenticationView
 import prx.test.kotlin.arkangel.module.authentication.presenter.LoginPresenter
+import prx.test.kotlin.arkangel.module.home.view.HomeActivity
+import prx.test.kotlin.arkangel.module.home.view.MainActivity
 import prx.test.kotlin.arkangel.module.profile.view.EditProfileActivity
 
 
@@ -86,7 +96,8 @@ class LoginActivity : AppCompatActivity(), AuthenticationView, View.OnClickListe
 
 
             if (presenter?.validateInputs(email, password)) {
-
+                HyperTrack.requestPermissions(this);
+                HyperTrack.requestLocationServices(this);
                 presenter.loginWithEmailPassword(mAuth, email, password)
             }
 
@@ -95,7 +106,8 @@ class LoginActivity : AppCompatActivity(), AuthenticationView, View.OnClickListe
             startActivity(intent)
 
         } else if (p0?.id == R.id.googleSignin) {
-
+            HyperTrack.requestPermissions(this);
+            HyperTrack.requestLocationServices(this);
             val signInIntent: Intent = mGoogleSignInClient!!.getSignInIntent();
             startActivityForResult(signInIntent, RC_SIGN_IN);
 
@@ -123,7 +135,7 @@ class LoginActivity : AppCompatActivity(), AuthenticationView, View.OnClickListe
 
     override fun OnComplete() {
         finish()
-        val intent = Intent(this@LoginActivity, EditProfileActivity::class.java)
+        val intent = Intent(this@LoginActivity, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
     }

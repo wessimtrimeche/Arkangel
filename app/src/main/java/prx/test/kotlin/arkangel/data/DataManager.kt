@@ -29,11 +29,11 @@ open class DataManager
         val firebaseUser = mAuth.currentUser
 //        val firstName1 = firstnameEditText.text.toString()
 //        val lastName1 = lastnameEditText.text.toString()
-        var displayName = mAuth.currentUser?.displayName
+//        var displayName = mAuth.currentUser?.displayName
 
         user.firstName = firstName
         user.lastName = lastName
-        displayName = user.firstName + " " + user.lastName
+        var displayName = user.firstName + " " + user.lastName
 
 
 

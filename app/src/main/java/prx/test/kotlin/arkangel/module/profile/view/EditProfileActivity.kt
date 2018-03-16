@@ -11,13 +11,12 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -29,11 +28,13 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import com.kelvinapps.rxfirebase.RxFirebaseDatabase
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.app_bar_edit_profile.*
 import kotlinx.android.synthetic.main.content_edit_profile.*
 import prx.test.kotlin.arkangel.R
 import prx.test.kotlin.arkangel.module.authentication.view.LoginActivity
+import prx.test.kotlin.arkangel.module.home.view.MainActivity
 import prx.test.kotlin.arkangel.module.profile.model.User
 
 
@@ -70,6 +71,28 @@ class EditProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItem
 
         firebaseUser = mAuth.getCurrentUser()!!
 
+        val header = nav_view_profile.getHeaderView(0)
+        val userMail : TextView = header.findViewById (R.id.user_email)
+        val userName : TextView = header.findViewById (R.id.username)
+        val imageView : CircleImageView = header.findViewById (R.id.imageView)
+
+
+
+
+        userMail.setText(firebaseUser.email)
+        userName.setText(firebaseUser.displayName)
+        if (firebaseUser.getPhotoUrl() != null) {
+            Glide.with(this)
+                    .load(firebaseUser!!.getPhotoUrl()!!.toString())
+                    .into(imageView)
+        }
+        imageView.setOnClickListener(View.OnClickListener {
+            finish()
+            startActivity(Intent(this, MainActivity::class.java))
+
+        })
+
+
         if (firebaseUser != null) {
             if (firebaseUser.getPhotoUrl() != null)
                 profileImageUrl = firebaseUser!!.getPhotoUrl()!!.toString()
@@ -96,16 +119,16 @@ class EditProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItem
 
 
         val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer_layout.addDrawerListener(toggle)
+                this, drawer_layout_profile, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        drawer_layout_profile.addDrawerListener(toggle)
         toggle.syncState()
 
-        nav_view.setNavigationItemSelectedListener(this)
+        nav_view_profile.setNavigationItemSelectedListener(this)
     }
 
     override fun onBackPressed() {
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
+        if (drawer_layout_profile.isDrawerOpen(GravityCompat.START)) {
+            drawer_layout_profile.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }
@@ -138,27 +161,26 @@ class EditProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItem
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
-            R.id.nav_camera -> {
-                // Handle the camera action
-            }
-            R.id.nav_gallery -> {
-
-            }
-            R.id.nav_slideshow -> {
-
+            R.id.user_profile -> {
+                finish()
+                startActivity(Intent(this, EditProfileActivity::class.java))
             }
             R.id.nav_manage -> {
 
-            }
-            R.id.nav_share -> {
 
             }
-            R.id.nav_send -> {
+            R.id.help -> {
+
+            }
+            R.id.logout -> {
+                FirebaseAuth.getInstance().signOut()
+                finish()
+                startActivity(Intent(this, LoginActivity::class.java))
 
             }
         }
 
-        drawer_layout.closeDrawer(GravityCompat.START)
+        drawer_layout_profile.closeDrawer(GravityCompat.START)
         return true
     }
 
