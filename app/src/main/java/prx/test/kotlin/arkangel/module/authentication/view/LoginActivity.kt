@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -18,6 +19,7 @@ import com.hypertrack.lib.HyperTrack
 import com.hypertrack.lib.callbacks.HyperTrackCallback
 import com.hypertrack.lib.models.SuccessResponse
 import com.hypertrack.lib.models.UserParams
+import kotlinx.android.synthetic.main.activity_authentication.*
 import kotlinx.android.synthetic.main.activity_login.*
 import prx.test.kotlin.arkangel.R
 import prx.test.kotlin.arkangel.R.id.emailEdit
@@ -73,6 +75,8 @@ class LoginActivity : AppCompatActivity(), AuthenticationView, View.OnClickListe
 
         login.setOnClickListener(this)
         goToSignUp.setOnClickListener(this)
+        val textView = googleSignin.getChildAt(0) as TextView
+        textView.setText("Sign In with google")
         googleSignin.setOnClickListener(this)
 
     }
@@ -96,8 +100,6 @@ class LoginActivity : AppCompatActivity(), AuthenticationView, View.OnClickListe
 
 
             if (presenter?.validateInputs(email, password)) {
-                HyperTrack.requestPermissions(this);
-                HyperTrack.requestLocationServices(this);
                 presenter.loginWithEmailPassword(mAuth, email, password)
             }
 
@@ -106,8 +108,6 @@ class LoginActivity : AppCompatActivity(), AuthenticationView, View.OnClickListe
             startActivity(intent)
 
         } else if (p0?.id == R.id.googleSignin) {
-            HyperTrack.requestPermissions(this);
-            HyperTrack.requestLocationServices(this);
             val signInIntent: Intent = mGoogleSignInClient!!.getSignInIntent();
             startActivityForResult(signInIntent, RC_SIGN_IN);
 
@@ -124,7 +124,7 @@ class LoginActivity : AppCompatActivity(), AuthenticationView, View.OnClickListe
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 val account = task.getResult(ApiException::class.java)
-                presenter.firebaseAuthWithGoogle(mAuth, account)
+                presenter.firebaseSignInWithGoogle(mAuth, account)
             } catch (e: ApiException) {
                 Log.w("Sign In failure", "Google sign in failed", e)
             }

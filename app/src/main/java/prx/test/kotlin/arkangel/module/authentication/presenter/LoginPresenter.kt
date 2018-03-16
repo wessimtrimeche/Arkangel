@@ -69,7 +69,9 @@ class LoginPresenter(val inter: AuthenticationView) {
         )
     }
 
-    fun firebaseAuthWithGoogle(mAuth: FirebaseAuth, acct: GoogleSignInAccount) {
+
+
+    fun firebaseSignInWithGoogle(mAuth: FirebaseAuth, acct: GoogleSignInAccount) {
         Log.d("Firebase Auth Google", "firebaseAuthWithGoogle:" + acct.id!!)
 
         inter.OnShowLoader()
@@ -78,12 +80,6 @@ class LoginPresenter(val inter: AuthenticationView) {
         RxFirebaseAuth.signInWithCredential(mAuth, credential).subscribe({
             inter.OnHideLoader()
             Log.d("Success", "signInWithCredential:success")
-            val user = mAuth.currentUser
-
-            //how to do it only at first login?
-
-            val dm = DataManager()
-            dm.createUserGoogle(mAuth, acct)
 
         }, {
             inter.onAuthenticationError(it.message)

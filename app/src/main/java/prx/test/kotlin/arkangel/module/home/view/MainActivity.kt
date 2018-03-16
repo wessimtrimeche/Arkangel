@@ -69,6 +69,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val mapFragment = supportFragmentManager
                 .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+        HyperTrack.requestPermissions(this);
+        HyperTrack.requestLocationServices(this);
 
 
         mAuth = FirebaseAuth.getInstance()

@@ -4,13 +4,20 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup.MarginLayoutParams
 import android.widget.RadioGroup
 import android.widget.Toast
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.hypertrack.lib.HyperTrack
 import kotlinx.android.synthetic.main.activity_authentication.*
+import kotlinx.android.synthetic.main.activity_authentication.view.*
+import kotlinx.android.synthetic.main.activity_login.*
 import prx.test.kotlin.arkangel.R
 import prx.test.kotlin.arkangel.common.utils.PrefManager
 import prx.test.kotlin.arkangel.module.authentication.presenter.AuthenticationView
@@ -19,6 +26,9 @@ import prx.test.kotlin.arkangel.module.home.view.HomeActivity
 import prx.test.kotlin.arkangel.module.home.view.MainActivity
 import prx.test.kotlin.arkangel.module.profile.model.User
 import prx.test.kotlin.arkangel.module.profile.view.EditProfileActivity
+import android.widget.TextView
+
+
 
 
 class RegisterActivity : AppCompatActivity(), AuthenticationView, RadioGroup.OnCheckedChangeListener, View.OnClickListener {
@@ -28,6 +38,8 @@ class RegisterActivity : AppCompatActivity(), AuthenticationView, RadioGroup.OnC
     lateinit var mAuth: FirebaseAuth
     val presenter = RegisterPresenter(this)
     var prog: ProgressDialog? = null
+    private var mGoogleSignInClient: GoogleSignInClient? = null
+    private val RC_SIGN_IN = 9001
 
     override fun onCreate(savedInstanceState: Bundle?) {
         mAuth = FirebaseAuth.getInstance()
@@ -41,6 +53,13 @@ class RegisterActivity : AppCompatActivity(), AuthenticationView, RadioGroup.OnC
 
         prefManager.checkLogin(mAuth)
 
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
 
         FirebaseAuth.AuthStateListener({
             if (it.currentUser != null) {
@@ -51,6 +70,10 @@ class RegisterActivity : AppCompatActivity(), AuthenticationView, RadioGroup.OnC
         userTypeRadioGroup.setOnCheckedChangeListener(this)
         registerBtn.setOnClickListener(this)
         goToLogin.setOnClickListener(this)
+        val textView = googleSignup.getChildAt(0) as TextView
+        textView.setText("Sign Up with google")
+        googleSignup.setOnClickListener(this)
+
     }
 
 
@@ -64,11 +87,15 @@ class RegisterActivity : AppCompatActivity(), AuthenticationView, RadioGroup.OnC
                 passwordEditText.visibility = View.GONE
                 goToLogin.visibility = View.GONE
                 parentCode.visibility = View.VISIBLE
+                googleSignup.visibility=View.GONE
+                //logo height : 194
+                //logo width : 100
 
-                val marginParams = MarginLayoutParams(registerBtn.getLayoutParams())
-                val marginParamsRadio = MarginLayoutParams(userTypeRadioGroup.getLayoutParams())
-                marginParamsRadio.setMargins(marginParams.leftMargin, 82, marginParams.rightMargin, marginParams.bottomMargin)
-                marginParams.setMargins(marginParams.leftMargin, marginParams.topMargin, marginParams.rightMargin, 80)
+
+//                val marginParams = MarginLayoutParams(registerBtn.getLayoutParams())
+//                val marginParamsRadio = MarginLayoutParams(userTypeRadioGroup.getLayoutParams())
+//                marginParamsRadio.setMargins(marginParams.leftMargin, 82, marginParams.rightMargin, marginParams.bottomMargin)
+//                marginParams.setMargins(marginParams.leftMargin, marginParams.topMargin, marginParams.rightMargin, 80)
                 registerBtn.setText("Link to parent")
 
             }
@@ -79,8 +106,26 @@ class RegisterActivity : AppCompatActivity(), AuthenticationView, RadioGroup.OnC
                 passwordEditText.visibility = View.VISIBLE
                 goToLogin.visibility = View.VISIBLE
                 parentCode.visibility = View.GONE
+                googleSignup.visibility=View.VISIBLE
+
                 registerBtn.setText("Register")
             }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode === RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                presenter.firebaseAuthWithGoogle(mAuth, account)
+            } catch (e: ApiException) {
+                Log.w("Sign In failure", "Google sign in failed", e)
+            }
+
         }
     }
 
@@ -102,7 +147,13 @@ class RegisterActivity : AppCompatActivity(), AuthenticationView, RadioGroup.OnC
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
 
+        } else if (p0?.id == R.id.googleSignup) {
+            val signInIntent: Intent = mGoogleSignInClient!!.getSignInIntent();
+            startActivityForResult(signInIntent, RC_SIGN_IN);
+
+
         }
+
     }
 
     override fun onAuthenticationError(errorMessage: String?) {
