@@ -23,7 +23,9 @@
         android:theme="@style/IntroTheme">
         <activity
             android:name=".module.splash.view.SplashActivity"
-            android:theme="@style/AppTheme1" />
+            android:theme="@style/AppTheme1" >
+
+        </activity>
         <activity android:name=".module.introSlider.view.IntroSliderActivity" />
         <activity
             android:name=".module.authentication.view.RegisterActivity"
@@ -57,6 +59,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <activity
             android:name=".module.home.view.MainActivity"
@@ -65,9 +70,18 @@
         <activity
             android:name=".module.childProfile.view.AddChildActivity"
             android:label="@string/title_activity_add_child"
-            android:theme="@style/IntroTheme">
+            android:theme="@style/IntroTheme" />
 
-        </activity>
+        <service android:name=".module.firebaseMessaging.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".module.home.view.MapsActivity"
+            android:label="@string/title_activity_maps" />
+        <activity android:name=".module.home.view.Main2Activity"></activity>
     </application>
 
 </manifest>

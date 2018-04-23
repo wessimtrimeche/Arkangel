@@ -1,32 +1,16 @@
 package prx.test.kotlin.arkangel.module.home.view
 
-import android.app.AlertDialog
-import android.content.Context
-import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
-import android.support.annotation.NonNull
-import android.util.Log
-import android.widget.Toast
+import android.support.v7.app.AppCompatActivity
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationServices
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.hypertrack.lib.HyperTrack
-import com.hypertrack.lib.HyperTrack.getOrCreateUser
-import com.hypertrack.lib.callbacks.HyperTrackCallback
-import com.hypertrack.lib.models.ErrorResponse
-import com.hypertrack.lib.models.SuccessResponse
-import com.hypertrack.lib.models.UserParams
 import prx.test.kotlin.arkangel.R
 import prx.test.kotlin.arkangel.common.utils.TrackGPS
 

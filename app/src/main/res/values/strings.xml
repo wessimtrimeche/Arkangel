@@ -32,6 +32,7 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_add_child">AddChildActivity</string>
+    <string name="title_activity_maps">Map</string>
     <!--<string name="default_web_client_id">AIzaSyCUF2YP5X95RYXr8mMWe5DR8RctCUxRkGI</string>-->
 
 

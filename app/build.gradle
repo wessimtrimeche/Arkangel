@@ -6,7 +6,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "prx.test.kotlin.arkangel"
-        minSdkVersion 19
+        minSdkVersion 18
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -40,16 +40,17 @@ dependencies {
     compile 'com.google.firebase:firebase-storage:11.8.0'
     compile "com.google.android.gms:play-services-auth:11.8.0"
     compile 'com.github.bumptech.glide:glide:3.8.0'
-    compile 'com.android.support:support-v4:19.1.0'
+    compile 'com.android.support:support-v4:26.1.0'
     compile 'com.google.android.gms:play-services-location:11.8.0'
     compile 'com.google.android.gms:play-services-maps:11.8.0'
+    compile 'com.google.firebase:firebase-messaging:11.8.0'
     //    implementation 'com.proxym_group:MVPArchitecture:1.1.1'
 
     //rxjava
     compile 'com.kelvinapps:rxfirebase:0.0.15'
     //hypertrack
     compile('com.hypertrack:android:0.6.20@aar') {
-        transitive = true;
+        transitive = true
     }
 
     //circle Image view

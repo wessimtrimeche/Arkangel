@@ -5,11 +5,10 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.github.paolorotolo.appintro.AppIntro
 import com.github.paolorotolo.appintro.AppIntroFragment
-import com.google.firebase.auth.FirebaseAuth
 import prx.test.kotlin.arkangel.R
+import prx.test.kotlin.arkangel.common.utils.PrefManager
 import prx.test.kotlin.arkangel.module.authentication.view.LoginActivity
 import prx.test.kotlin.arkangel.module.authentication.view.RegisterActivity
-import prx.test.kotlin.arkangel.common.utils.PrefManager
 import prx.test.kotlin.arkangel.module.introSlider.presenter.IntroSliderView
 
 

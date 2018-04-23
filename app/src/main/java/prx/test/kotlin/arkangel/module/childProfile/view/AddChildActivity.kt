@@ -9,6 +9,7 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -50,9 +51,9 @@ class AddChildActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
 
         val header = nav_view_add_child.getHeaderView(0)
-        val userMail : TextView = header.findViewById (R.id.user_email)
-        val userName : TextView = header.findViewById (R.id.username)
-        val imageView : CircleImageView = header.findViewById (R.id.imageView)
+        val userMail: TextView = header.findViewById(R.id.user_email)
+        val userName: TextView = header.findViewById(R.id.username)
+        val imageView: CircleImageView = header.findViewById(R.id.imageView)
 
 
 
@@ -78,14 +79,14 @@ class AddChildActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 val year = cal.get(Calendar.YEAR)
                 val month = cal.get(Calendar.MONTH)
                 val day = cal.get(Calendar.DAY_OF_MONTH)
-                mDateSetListener = object: DatePickerDialog.OnDateSetListener {
-                    override fun onDateSet(datePicker: DatePicker, year:Int, month:Int, day:Int) {
+                mDateSetListener = object : DatePickerDialog.OnDateSetListener {
+                    override fun onDateSet(datePicker: DatePicker, year: Int, month: Int, day: Int) {
                         var year1 = year
-                        var month1=month
-                        var day1=day
+                        var month1 = month
+                        var day1 = day
                         month1 = month1 + 1
 //                        Log.d("AddChild", "onDateSet: mm/dd/yyy: " + month1 + "/" + day1 + "/" + year1)
-                        val date = ""+day1 + "/" + month1 + "/" + year1
+                        val date = "" + day1 + "/" + month1 + "/" + year1
                         birthDate.setText(date)
 
                     }
@@ -103,10 +104,10 @@ class AddChildActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         })
 
         val uuid = UUID.randomUUID().toString()
-        val code = uuid.substring(0,8)
+        val code = uuid.substring(0, 8)
         parentCode.setText(code)
 
-        val mAuth= FirebaseAuth.getInstance()
+        val mAuth = FirebaseAuth.getInstance()
         var database = FirebaseDatabase.getInstance()
         var displayName = mAuth.currentUser?.displayName
 
@@ -119,17 +120,18 @@ class AddChildActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
                         var childList: MutableList<Child>? = mutableListOf<Child>()
 
-                        child.name=childName.text.toString()
-                        child.parentCode=code
+                        child.name = childName.text.toString()
+                        child.parentCode = code
 
                         childList?.add(child)
 
-                        user.childList=childList
+                        user.childList = childList
 
 //                        var newChild= database.getReference().child(displayName).push().key
 
+                        Log.d("kkkkkk",user.childList.toString())
 
-                        ref.child("users").child(displayName).child("childsList/"+child.parentCode).setValue(user.childList)
+                        ref.child("users").child(displayName).child("childsList/" + child.parentCode).setValue(child)
 
                     })
 

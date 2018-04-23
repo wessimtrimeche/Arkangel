@@ -6,31 +6,70 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="prx.test.kotlin.arkangel.module.home.view.MainActivity"
+    tools:layout_editor_absoluteY="81dp"
     tools:showIn="@layout/app_bar_main">
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="40dp"
-        map:layout_constraintBottom_toTopOf="@+id/addChildBtn"
-        map:layout_constraintEnd_toEndOf="parent"
-        map:layout_constraintStart_toStartOf="parent"
-        map:layout_constraintTop_toTopOf="parent"
-        tools:context="prx.test.kotlin.arkangel.module.home.view.MainActivity" />
+    <!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:map="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:id="@+id/map"-->
+    <!--android:name="com.google.android.gms.maps.SupportMapFragment"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_marginBottom="40dp"-->
+    <!--map:layout_constraintBottom_toTopOf="@+id/addChildBtn"-->
+    <!--map:layout_constraintEnd_toEndOf="parent"-->
+    <!--map:layout_constraintStart_toStartOf="parent"-->
+    <!--map:layout_constraintTop_toTopOf="parent"-->
+    <!--tools:context="prx.test.kotlin.arkangel.module.home.view.MainActivity" />-->
 
     <Button
         android:id="@+id/addChildBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="123dp"
-        android:text="Add child profile"
+        android:layout_marginBottom="40dp"
+        android:text="Add child"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/map" />
+        app:layout_constraintTop_toBottomOf="@+id/placeline_fragment" />
+    <Button
+        android:id="@+id/searchLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:text="Search location"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addChildBtn" />
+
+    <fragment
+        android:id="@+id/placeline_fragment"
+        android:name="com.hypertrack.lib.internal.consumer.view.Placeline.PlacelineFragment"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:layout_marginBottom="9dp"
+        app:layout_constraintBottom_toTopOf="@+id/addChildBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/placeline_fragment" />
+
+
+    <!--<fragment-->
+        <!--android:id="@+id/htMapfragment"-->
+        <!--android:name="com.hypertrack.lib.HyperTrackMapFragment"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_marginBottom="28dp"-->
+        <!--android:layout_marginTop="32dp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toStartOf="@+id/addChildBtn"-->
+        <!--app:layout_constraintStart_toStartOf="@+id/addChildBtn"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/placeline_fragment"-->
+        <!--tools:layout="@layout/fragment_map_new" />-->
+
 </android.support.constraint.ConstraintLayout>

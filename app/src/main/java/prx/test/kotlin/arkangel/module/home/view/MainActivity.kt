@@ -26,8 +26,13 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.hypertrack.lib.HyperTrack
+import com.hypertrack.lib.HyperTrackMapFragment
+import com.hypertrack.lib.MapFragmentCallback
 import com.hypertrack.lib.callbacks.HyperTrackCallback
+import com.hypertrack.lib.internal.consumer.view.Placeline.PlacelineData
+import com.hypertrack.lib.internal.consumer.view.Placeline.PlacelineFragment
 import com.hypertrack.lib.models.ErrorResponse
+import com.hypertrack.lib.models.Place
 import com.hypertrack.lib.models.SuccessResponse
 import com.hypertrack.lib.models.UserParams
 import de.hdodenhof.circleimageview.CircleImageView
@@ -36,9 +41,11 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import prx.test.kotlin.arkangel.R
 import prx.test.kotlin.arkangel.common.utils.TrackGPS
+import prx.test.kotlin.arkangel.module.adapter.MyMapAdapter
 import prx.test.kotlin.arkangel.module.authentication.view.LoginActivity
 import prx.test.kotlin.arkangel.module.childProfile.view.AddChildActivity
 import prx.test.kotlin.arkangel.module.profile.view.EditProfileActivity
+import java.util.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     override fun onConnectionFailed(p0: ConnectionResult) {
@@ -60,15 +67,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var gps: TrackGPS
     lateinit var firebaseUser: FirebaseUser
     lateinit var mAuth: FirebaseAuth
+//    private val mapFragmentCallback = object: MapFragmentCallback() {
+//        override fun onExpectedPlaceSelected(expectedPlace: Place) {
+//            super.onExpectedPlaceSelected(expectedPlace)
+//            if (expectedPlace != null)
+//            {
+//                // Use this place to createAndAssignAction for current userId
+//            }
+//        }
+//    }
+
+    lateinit var placelineFragment:PlacelineFragment
+//    lateinit var htMapFragment: HyperTrackMapFragment
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        val mapFragment = supportFragmentManager
-                .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+//        val mapFragment = supportFragmentManager
+//                .findFragmentById(R.id.map) as SupportMapFragment
+//        mapFragment.getMapAsync(this)
         HyperTrack.requestPermissions(this);
         HyperTrack.requestLocationServices(this);
 
@@ -76,6 +96,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         mAuth = FirebaseAuth.getInstance()
         firebaseUser = mAuth.getCurrentUser()!!
 
+
+
+              // Initialize HyperTrackMapFragment in Activity’s layout file to getMapAsync
+//       htMapFragment = getSupportFragmentManager().findFragmentById(R.id.htMapfragment) as HyperTrackMapFragment
+//       htMapFragment.setHTMapAdapter(MyMapAdapter(this@MainActivity))
+//       htMapFragment.setMapFragmentCallback(mapFragmentCallback);
 
 
         val header = nav_view_main.getHeaderView(0)
@@ -133,11 +159,37 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
 
 
+        val date = Date()
+        HyperTrack.getPlaceline(date, object:HyperTrackCallback() {
+            lateinit var p: PlacelineData
+            override fun onSuccess(@NonNull response:SuccessResponse) {
+                // Handle getPlaceline success here
+                if (response != null)
+                {
+                  p  = response.getResponseObject() as PlacelineData
+                }
+            }
+            override fun onError(@NonNull errorResponse:ErrorResponse) {
+                // Handle getPlaceline error here
+                Log.d("Placeline", "onError: " + errorResponse.getErrorMessage())
+            }
+        })
+
+        placelineFragment  =  getSupportFragmentManager().findFragmentById(R.id.placeline_fragment) as PlacelineFragment
+
         addChildBtn.setOnClickListener(View.OnClickListener {
             finish()
             startActivity(Intent(this, AddChildActivity::class.java))
+//            startActivity(Intent(this, AddChildActivity::class.java))
 
         })
+
+        searchLocation.setOnClickListener(View.OnClickListener {
+            finish()
+            startActivity(Intent(this, Main2Activity::class.java))
+        })
+//
+
 
 
 
@@ -173,6 +225,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //            alertDialog.show()
 //
 //        }
+
+
+
+
+
 
 
 

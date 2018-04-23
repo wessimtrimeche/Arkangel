@@ -124,6 +124,7 @@ class LoginActivity : AppCompatActivity(), AuthenticationView, View.OnClickListe
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 val account = task.getResult(ApiException::class.java)
+
                 presenter.firebaseSignInWithGoogle(mAuth, account)
             } catch (e: ApiException) {
                 Log.w("Sign In failure", "Google sign in failed", e)
